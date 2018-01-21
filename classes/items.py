@@ -1,19 +1,41 @@
 class Item():
-    #baseklasse for alle gjenstandar
+    # Baseklasse for alle gjenstandar
     def __init__(self, name, description):
         self.name = name
         self.description = description
 
     def __str__(self):
-        return "Foran deg ligg ei %s. Den %s." % (self.name, self.description)
+        return "Foran deg ligg {}. Den {}.".format(self.name, self.description)
         # return "{}\n=====\n{}\nValue: {}\n".format(self.name, self.description)
 
 class Knife(Item):
-    def __init__(self):
-        super().__init__(name = "Knife",
-                         description = "Looks like it was used recently")
+    # Klassa for alle gjenstandar som er knivar
+    def __init__(self, name, description, sharpness):
+        super().__init__(name, description)
+        self.sharpness = sharpness
 
-kakespade = Item("kakespade", "ser ut som ei kakespade")
+    def __str__(self):
+        return "Foran deg ligg {}. Den {}. \nKniven er {} skarp.".format(self.name, self.description, self.sharpness)
 
-#print (kakespade)
-#print (Knife())
+class Food(Item):
+    # Klassa for alle gjenstandar som er mat
+    def __init__(self, name, description, nutritionAmount):
+        super().__init__(name, description)
+        self.nutritionAmount = nutritionAmount
+
+    def __str__(self):
+        return "Foran deg ligg {}. Den {}. \nEnergiinnhold: {} kJ/100g".format(self.name, self.description, int(self.nutritionAmount))
+
+
+
+
+# Her ligg alle gjenstandane
+brødkniv = Knife("ein brødkniv", "har noko rust på eggen", "veldig")
+bolle = Food("ein bolle", "er nybakt og lukta fyller rommet", 124)
+
+print(brødkniv)
+print(bolle)
+
+# print (kakespade)
+# kakespade = Item("kakespade", "ser ut som ei kakespade")
+# print(brødkniv.sharpness)
