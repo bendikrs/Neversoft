@@ -4,6 +4,9 @@ from classes.items import *
 from classes.rooms import *
 from render import *
 
+white = (85,200,152)
+screen = pygame.display.set_mode((1200,800))
+screen.fill((white))
 
 class App:
     def __init__(self):
@@ -15,6 +18,7 @@ class App:
         pygame.init()
         self._display_surf = pygame.display.set_mode(self.size, pygame.HWSURFACE | pygame.DOUBLEBUF)
         self._running = True
+        pygame.display.set_mode().fill((white))
         pygame.display.set_caption("Neversoft inc.")
         # soundObj = pygame.mixer.Sound("80s-motivational-chiptune.mp3")
         # soundObj.play()
@@ -30,6 +34,7 @@ class App:
     def on_loop(self):
         pass
     def on_render(self):
+        pygame.display.flip()
         pass
     def on_cleanup(self):
         pygame.quit()
