@@ -14,12 +14,13 @@ class App:
         self.clock = pygame.time.Clock()
         pygame.init()
         self._display_surf = pygame.display.set_mode(self.size)
-        pygame.display.set_mode().fill((White))
+        pygame.display.set_mode().fill(colorDict["darkblue"])
         pygame.display.set_caption("Neversoft inc.")
 
-        pygame.mixer.pre_init(44100, 16, 2, 4096)
-        soundObj = pygame.mixer.Sound("beep.wav")
-        soundObj.play()
+        pygame.mixer.pre_init(44100, 16, 2, 4096) #
+        soundObj = pygame.mixer.Sound("beep.wav") # Legg til musikk i bakgrunnen
+        soundObj.play()                           #
+		# self.clock = pygame.time.Clock()
 
 
     def on_event(self, event):
@@ -33,6 +34,8 @@ class App:
 
     def on_loop(self):
         pass
+
+
     def on_render(self):
         pygame.display.flip()
         pass
@@ -40,8 +43,6 @@ class App:
         pygame.quit()
 
     def on_execute(self):
-
-
         while( self._running ):
             for event in pygame.event.get():
                 self.on_event(event)

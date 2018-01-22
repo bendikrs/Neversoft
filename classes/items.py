@@ -15,7 +15,7 @@ class Knife(Item):
         self.sharpness = sharpness
 
     def __str__(self):
-        return "Foran deg ligg {}. Den {}. \nKniven er {} skarp.".format(self.name, self.description, self.sharpness)
+        return "Foran deg ligg {}. Den {}. \nKniven er {}.".format(self.name, self.description, self.sharpness)
 
 
 class Food(Item):
@@ -29,7 +29,7 @@ class Food(Item):
 
 
 # Her ligg alle gjenstandane
-brødkniv = Knife("ein brødkniv", "har noko rust på eggen", "veldig")
+brødkniv = Knife("ein brødkniv", "har noko rust på eggen", "veldig sløv")
 bolle = Food("ein bolle", "er nybakt og lukta fyller rommet", 124)
 
 
