@@ -2,6 +2,7 @@ import pygame
 from pygame.locals import *
 from classes.items import *
 from classes.rooms import *
+from render import *
 
 
 class App:
@@ -26,7 +27,6 @@ class App:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
                 self._running = False
-
     def on_loop(self):
         pass
     def on_render(self):
