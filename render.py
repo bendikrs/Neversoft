@@ -8,9 +8,7 @@ Black = (0,0,0)
 class Render(App):
     def __init__(self):
         super().__init__(self)
-    screen = pygame.display.set_mode((self.width, self.height))
 
-    def __str__(self):
-        return "{} {}".format(self._display_surf, self.size)
+    pygame.display.set_mode().fill((White))
 
-screen.fill((white))
+# screen.fill((white))
