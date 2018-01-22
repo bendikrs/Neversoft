@@ -26,6 +26,7 @@ class App:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
                 self._running = False
+
     def on_loop(self):
         pass
     def on_render(self):

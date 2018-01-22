@@ -19,6 +19,7 @@ class Rooms:
             return "Du er no i {}.".format(self.name)
 
 
+
 Kjøkenet = Rooms("Kjøkenet", 1, 1)
 
-print(Kjøkenet. posX)
+print(Kjøkenet)
