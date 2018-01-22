@@ -26,15 +26,19 @@ class Food(Item):
     def __str__(self):
         return "Foran deg ligg {}. Den {}. \nEnergiinnhold: {} kJ/100g".format(self.name, self.description, int(self.nutritionAmount))
 
-
-
+# class Spoon(Item):
+#     """docstring for Spoon."""
+#     def __init__(self, ):
+#         super().__init__(name, description)
+#         self.arg = arg
 
 # Her ligg alle gjenstandane
 brødkniv = Knife("ein brødkniv", "har noko rust på eggen", "veldig")
 bolle = Food("ein bolle", "er nybakt og lukta fyller rommet", 124)
 
+print(brødkniv.name)
 print(brødkniv)
-print(bolle)
+print(bolle.nutritionAmount)
 
 # print (kakespade)
 # kakespade = Item("kakespade", "ser ut som ei kakespade")
