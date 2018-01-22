@@ -3,27 +3,24 @@ from pygame.locals import *
 from classes.items import *
 from classes.rooms import *
 from render import *
-
-white = (255, 255, 255)
-# screen = pygame.display.set_mode((1200,800))
-# screen.fill((white))
+import time
 
 class App:
+
     def __init__(self):
         self._running = True
         self._display_surf = None
         self.size = self.width, self.height = 1200, 800
-
-    
+        self.clock = pygame.time.Clock()
         pygame.init()
-        self._display_surf = pygame.display.set_mode(self.size, pygame.HWSURFACE | pygame.DOUBLEBUF)
-        self._running = True
-        pygame.display.set_mode().fill((white))
+        self._display_surf = pygame.display.set_mode(self.size)
+        pygame.display.set_mode().fill((White))
         pygame.display.set_caption("Neversoft inc.")
-        # soundObj = pygame.mixer.Sound("80s-motivational-chiptune.mp3")
-        # soundObj.play()
-        # time.sleep(15) # wait and let the sound play for 1 second
-        # soundObj.stop()
+
+        pygame.mixer.pre_init(44100, 16, 2, 4096)
+        soundObj = pygame.mixer.Sound("beep.wav")
+        soundObj.play()
+
 
     def on_event(self, event):
         if event.type == pygame.QUIT:
