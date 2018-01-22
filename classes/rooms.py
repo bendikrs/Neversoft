@@ -14,12 +14,13 @@ class Rooms:
         elif opt == 1:
             return "Du opnar døra og kjem inn i {}.".format(self.name)
         elif opt == 2:
-            return "Du er no kem inn i {}.".format(self.name)
+            return "Du er no komen inn i {}.".format(self.name)
         else:
             return "Du er no i {}.".format(self.name)
 
 
 
 Kjøkenet = Rooms("Kjøkenet", 1, 1)
+Stova = Rooms("Stova", 2, 1)
 
 print(Kjøkenet)

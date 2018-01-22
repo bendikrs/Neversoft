@@ -4,9 +4,9 @@ from classes.items import *
 from classes.rooms import *
 from render import *
 
-white = (85,200,152)
-screen = pygame.display.set_mode((1200,800))
-screen.fill((white))
+white = (255, 255, 255)
+# screen = pygame.display.set_mode((1200,800))
+# screen.fill((white))
 
 class App:
     def __init__(self):
@@ -14,7 +14,7 @@ class App:
         self._display_surf = None
         self.size = self.width, self.height = 1200, 800
 
-    def on_init(self):
+    
         pygame.init()
         self._display_surf = pygame.display.set_mode(self.size, pygame.HWSURFACE | pygame.DOUBLEBUF)
         self._running = True
@@ -31,6 +31,9 @@ class App:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
                 self._running = False
+
+
+
     def on_loop(self):
         pass
     def on_render(self):
@@ -40,8 +43,7 @@ class App:
         pygame.quit()
 
     def on_execute(self):
-        if self.on_init() == False:
-            self._running = False
+
 
         while( self._running ):
             for event in pygame.event.get():
