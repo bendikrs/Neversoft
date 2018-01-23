@@ -2,9 +2,9 @@ import pygame as pg
 
 
 def main():
-    w = 600
-    h = 400
-    screen = pg.display.set_mode((w, h))
+    # w = 600
+    # h = 400
+    # screen = pg.display.set_mode((w, h))
     font = pg.font.Font(None, 32)
     clock = pg.time.Clock()
     input_box = pg.Rect(w/2-70, h/2, 140, 32)
