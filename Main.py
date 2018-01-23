@@ -42,7 +42,11 @@ class App:
             elif event.key == pg.K_k:
                 print(Kjøkenet)
 
-        input_box1.handle_event(event)
+        returnTxt = input_box1.handle_event(event) # returnTxt er inputen frå spelaren etter han har trykt enter
+
+        if returnTxt == "hei":
+            print("rompeball")
+
 
     def on_loop(self): # Her legg vi alt som skal skje kbar gong bilete blir oppdatert
 
@@ -65,6 +69,7 @@ class App:
 if __name__ == "__main__" :
     theApp = App()
     theApp.on_execute()
+
 
 
     #

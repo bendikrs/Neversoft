@@ -28,15 +28,18 @@ class InputBox:
             self.color = COLOR_ACTIVE if self.active else COLOR_INACTIVE
         if event.type == pg.KEYDOWN:
             if self.active:
+                returnText = ""
                 if event.key == pg.K_RETURN:
+                    returnText = self.text
                     print(self.text)
-                    self.text = ''
+                    self.text = ""
                 elif event.key == pg.K_BACKSPACE:
                     self.text = self.text[:-1]
                 else:
                     self.text += event.unicode
                 # Re-render the text.
                 self.txt_surface = FONT.render(self.text, True, self.color)
+                return returnText
 
     def update(self):
         # Resize the box if the text is too long.
