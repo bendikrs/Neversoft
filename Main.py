@@ -23,38 +23,36 @@ class App:
 		# self.clock = pygame.time.Clock()
 
 
-    def on_event(self, event):
+    def on_event(self, event): # Her skjer all input
         if event.type == pygame.QUIT:
             self._running = False
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
                 self._running = False
 
+            elif event.key == pygame.K_k:
+                print(Kjøkenet)
 
 
-    def on_loop(self):
-        pass
+    def on_loop(self): # Her legg vi alt som skal skje kbar gong bilete blir oppdatert
 
+        pygame.display.update()
 
-    def on_render(self):
-        pygame.display.flip()
-        pass
-    def on_cleanup(self):
+    def on_cleanup(self): # Denne metoden køyrer når spelet blir avslutta
         pygame.quit()
 
     def on_execute(self):
-        while( self._running ):
+        while( self._running ):         # Dette er game loopen som køyrer heile tida spelet køyrer
             for event in pygame.event.get():
                 self.on_event(event)
             self.on_loop()
-            self.on_render()
         self.on_cleanup()
 
 if __name__ == "__main__" :
     theApp = App()
     theApp.on_execute()
 
-print(brødkniv)
+
     #
     #
     # pygame.init()

@@ -22,5 +22,3 @@ class Rooms:
 
 Kjøkenet = Rooms("Kjøkenet", 1, 1)
 Stova = Rooms("Stova", 2, 1)
-
-print(Kjøkenet)
