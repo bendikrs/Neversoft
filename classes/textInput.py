@@ -6,7 +6,6 @@ COLOR_INACTIVE = pg.Color('lightskyblue3')
 COLOR_ACTIVE = pg.Color('dodgerblue2')
 FONT = pg.font.Font(None, 32)
 
-
 class InputBox:
 
     def __init__(self, x, y, w, h, text=''):
@@ -39,7 +38,7 @@ class InputBox:
                     self.text += event.unicode
                 # Re-render the text.
                 self.txt_surface = FONT.render(self.text, True, self.color)
-                return returnText
+                return returnText.split()
 
     def update(self):
         # Resize the box if the text is too long.

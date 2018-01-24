@@ -1,6 +1,6 @@
 import pygame
 from pygame.locals import *
-from Main import *
+
 
 
 colorDict = {   "white": (255, 255, 255),

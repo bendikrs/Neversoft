@@ -1,4 +1,10 @@
-import random
+import random as r
+
+
+offBoundsMsgs = ["Der er ikkje noko i den retninga.", "Du møtte ein vegg.", "Du kjem deg ikkje vidare i den retninga."]
+
+
+roomSizeX, roomSizeY = 3, 3
 
 class Rooms:
     # Dette er baseklassa til allle romma
@@ -6,9 +12,10 @@ class Rooms:
         self.name = name
         self.posX = posX
         self.posY = posY
+        # return roomDict[currentRoom]
 
     def __str__(self):
-        opt = random.randint(0,4)
+        opt = r.randint(0,4)
         if opt == 0:
             return "Du kjem inn i {}.".format(self.name)
         elif opt == 1:
@@ -20,5 +27,5 @@ class Rooms:
 
 
 
-Kjøkenet = Rooms("Kjøkenet", 1, 1)
-Stova = Rooms("Stova", 2, 1)
+
+# Her er alle romma som er med i spelet

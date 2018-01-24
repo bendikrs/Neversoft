@@ -5,32 +5,38 @@ from classes.rooms import *
 from classes.textInput import *
 from render import *
 import time
+import random as r
 
 pg.init()
-w, h = 1200, 800
+w, h = 800, 600
 boxWidth, boxHeight = 140, 35
 
 screen = pg.display.set_mode((w, h))
 input_box1 = InputBox(1, h-boxHeight-1, boxWidth, boxHeight)
+pos_x = 0
+pos_y = 0
 
+ # romma
+Kjøkenet = Rooms("Kjøkenet", 1, 1)
+Stova = Rooms("Stova", 2, 1)
+
+
+roomList = [["Kjøken", 1, 1],["Stove", 2, 1]]
 
 class App:
 
     def __init__(self):
         self._running = True
-        # self._display_surf = None
-        # self.size = self.width, self.height = 1200, 800
-        # self._display_surf = pg.display.set_mode(self.size)
         self.clock = pg.time.Clock()
 
-        pg.display.set_caption("Neversoft inc.")
+        pg.display.set_caption("Neversoft inc.") #
 
         pg.mixer.pre_init(44100, 16, 2, 4096) #
         soundObj = pg.mixer.Sound("beep.wav") # Legg til musikk i bakgrunnen
-        soundObj.play()                           #
-		# self.clock = pg.time.Clock()
+        soundObj.play()
 
-
+        self.posY = pos_y
+        self.posX = pos_x
 
     def on_event(self, event): # Her skjer all input
         if event.type == pg.QUIT:
@@ -39,16 +45,46 @@ class App:
             if event.key == pg.K_ESCAPE:
                 self._running = False
 
-            elif event.key == pg.K_k:
-                print(Kjøkenet)
-
-        returnTxt = input_box1.handle_event(event) # returnTxt er inputen frå spelaren etter han har trykt enter
-
-        if returnTxt == "hei":
-            print("rompeball")
+        # returnTxt er inputen frå spelaren etter han har trykt enter
+        returnTxt = input_box1.handle_event(event)
 
 
-    def on_loop(self): # Her legg vi alt som skal skje kbar gong bilete blir oppdatert
+        # Her skjer all forflytting av karakteren
+        if "go" in str(returnTxt):
+            if "north" in str(returnTxt):
+                self.posY += 1
+            elif "west" in str(returnTxt):
+                self.posX -= 1
+            elif "east" in str(returnTxt):
+                self.posX += 1
+            elif "south" in str(returnTxt):
+                self.posY -= 1
+
+            print("X posisjon:" + str(self.posX) + " Y posisjon:" + str(self.posY))
+            
+
+
+
+        # Denne biten forhindrar spelaren å gå utanfor bana, variablane ligg i room.py
+        offBoundsMsg = offBoundsMsgs[r.randint(0, len(offBoundsMsgs)- 1 )]
+        if self.posX < 0:
+            print(offBoundsMsg)
+            self.posX = 0
+        if self.posX > roomSizeX:
+            print(offBoundsMsg)
+            self.posX -= 1
+
+        if self.posY < 0:
+            print(offBoundsMsg)
+            self.posY = 0
+        if self.posY > roomSizeY:
+            print(offBoundsMsg)
+            self.posY -= 1
+
+
+
+
+    def on_loop(self): # Her legg vi alt som skal skje kvar gong bilete blir oppdatert
 
         input_box1.update()
         pg.display.set_mode().fill(colorDict["darkblue"])
