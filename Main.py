@@ -8,20 +8,23 @@ import time
 import random as r
 
 pg.init()
-w, h = 800, 600
-boxWidth, boxHeight = 140, 35
+W, H = 800, 600
+boxWidth, boxHeight = W - 10, 40
 
-screen = pg.display.set_mode((w, h))
-input_box1 = InputBox(1, h-boxHeight-1, boxWidth, boxHeight)
-pos_x = 0
-pos_y = 0
+screen = pg.display.set_mode((W, H))
+input_box1 = InputBox(5, H-boxHeight-5, boxWidth, boxHeight)
+posX = 0
+posY = 0
 
  # romma
-Kjøkenet = Rooms("Kjøkenet", 1, 1)
-Stova = Rooms("Stova", 2, 1)
+Kjøkenet = Rooms("Kuk", "Rommet lukta ost.")
+Stova = Rooms("Stova","Dritlukt")
 
 
-roomList = [["Kjøken", 1, 1],["Stove", 2, 1]]
+roomList = [[[Kjøkenet, 0, 0],["Garasja", 1, 0]],[[Stova, 0, 1],["Badet", 0, 2]]]
+
+
+
 
 class App:
 
@@ -35,8 +38,8 @@ class App:
         soundObj = pg.mixer.Sound("beep.wav") # Legg til musikk i bakgrunnen
         soundObj.play()
 
-        self.posY = pos_y
-        self.posX = pos_x
+        self.posY = posY
+        self.posX = posX
 
     def on_event(self, event): # Her skjer all input
         if event.type == pg.QUIT:
@@ -60,8 +63,9 @@ class App:
             elif "south" in str(returnTxt):
                 self.posY -= 1
 
+
             print("X posisjon:" + str(self.posX) + " Y posisjon:" + str(self.posY))
-            
+            print(roomList[self.posX][self.posY][0])
 
 
 
@@ -86,7 +90,7 @@ class App:
 
     def on_loop(self): # Her legg vi alt som skal skje kvar gong bilete blir oppdatert
 
-        input_box1.update()
+
         pg.display.set_mode().fill(colorDict["darkblue"])
         input_box1.draw(screen)
 

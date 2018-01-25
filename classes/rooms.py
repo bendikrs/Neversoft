@@ -8,10 +8,9 @@ roomSizeX, roomSizeY = 3, 3
 
 class Rooms:
     # Dette er baseklassa til allle romma
-    def __init__(self, name, posX, posY):
+    def __init__(self, name, smell):
         self.name = name
-        self.posX = posX
-        self.posY = posY
+        self.smell = smell
         # return roomDict[currentRoom]
 
     def __str__(self):
