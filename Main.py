@@ -8,8 +8,14 @@ import time
 import random as r
 import sys
 import os.path
+from images import *
 
-kitchenimg = pg.image.load("speletbase.png")
+kjøkenet_img = pg.image.load("images/kjøkenet_img.png")
+badet_img = pg.image.load("images/badet_img.png")
+gangen_img = pg.image.load("images/gangen_img.png")
+soverommet_img = pg.image.load("images/soverommet_img.png")
+stova_img = pg.image.load("images/stova_img.png")
+garasja_img = pg.image.load("images/garasja_img.png")
 pg.init()
 W, H = 800, 600
 boxWidth, boxHeight = W - 10, 40
@@ -31,8 +37,8 @@ Badet = Rooms("Badet", "Rommet luktar urin og mugg")
 Gangen = Rooms("Gangen", "Rommet luktar sure sko og kattemat")
 Soverommet = Rooms("Soverommet", "Rommet luktar sæd og morgenånde")
 
-roomList = [[[Garasja, 0, 0, kitchenimg],[Soverommet, 0, 1]]
-            ,[[Gangen, 1, 0],[Stova, 1, 1]],[[Badet, 2, 0],[Kjøkenet, 2, 1]]]
+roomList = [[[Garasja, 0, 0, garasja_img],[Soverommet, 0, 1, soverommet_img]]
+            ,[[Gangen, 1, 0, gangen_img],[Stova, 1, 1, stova_img]],[[Badet, 2, 0, badet_img],[Kjøkenet, 2, 1, kjøkenet_img]]]
 
 class App:
 
@@ -48,7 +54,7 @@ class App:
 
         self.posY = posY
         self.posX = posX
-        self.screenText = ""
+        self.screenText = "Bruk sansane til å utforske huset"
 
     def on_event(self, event): # Her skjer all input
         if event.type == pg.QUIT:
@@ -116,8 +122,8 @@ class App:
     def on_loop(self): # Her legg vi alt som skal skje kvar gong bilete blir oppdatert
 
         self.clock.tick(30)
-        screen.fill(colorDict["darkblue"])
-        #screen.blit((roomList[self.posX][self.posY][3]),(0,0))
+        #screen.fill(colorDict["darkblue"])
+        screen.blit((roomList[self.posX][self.posY][3]),(0,0))
         input_box1.draw(screen)
         screen.blit(FONT.render(str(self.screenText), True, TEXT_COLOR), (35, 450))
         pg.display.update()
