@@ -6,13 +6,16 @@ from classes.textInput import *
 from render import *
 import time
 import random as r
+import sys
+import os.path
 
+img1 = pg.image.load("speletbase.png")
 pg.init()
 W, H = 800, 600
 boxWidth, boxHeight = W - 10, 40
 
 FONT = pg.font.SysFont("lucidaconsole", 36)
-TEXT_COLOR = pg.Color("Black")
+TEXT_COLOR = pg.Color("White")
 
 
 screen = pg.display.set_mode((W, H))
@@ -21,11 +24,12 @@ posX = 0
 posY = 0
 
  # romma
-Kjøkenet = Rooms("Kuk", "Rommet lukta ost.")
-Stova = Rooms("Stova","Dritlukt")
+Kjøkenet = Rooms("Kuk", "Rommet luktar ost.")
+Stova = Rooms("Stova","Rommet luktar drit")
+Garasja = Rooms("Garasja", "Rommet luktar spylevæske og svette")
+Badet = Rooms("Badet", "Rommet luktar urin og mugg")
 
-
-
+roomList = [[[Kjøkenet, 0, 0],[Garasja, 0, 1]],[[Stova, 1, 0],[Badet, 1, 1]]]
 
 class App:
 
@@ -57,9 +61,6 @@ class App:
         # Her skjer all forflytting av karakteren
         if "go" in str(returnTxt):
 
-            roomList = [[[Kjøkenet, 0, 0],["Garasja", 0, 1]],[[Stova, 1, 0],["Badet", 1, 1]]]
-
-
             if "north" in str(returnTxt):
                 self.posY += 1
             elif "west" in str(returnTxt):
@@ -79,25 +80,36 @@ class App:
         offBoundsMsg = offBoundsMsgs[r.randint(0, len(offBoundsMsgs)- 1 )]
         if self.posX < 0:
             print(offBoundsMsg)
+            self.screenText = ''
+            self.screenText = offBoundsMsg
             self.posX = 0
         if self.posX > roomSizeX:
             print(offBoundsMsg)
+            self.screenText = ''
+            self.screenText = offBoundsMsg
             self.posX -= 1
 
         if self.posY < 0:
             print(offBoundsMsg)
+            self.screenText = ''
+            self.screenText = offBoundsMsg
             self.posY = 0
         if self.posY > roomSizeY:
             print(offBoundsMsg)
+            self.screenText = ''
+            self.screenText = offBoundsMsg
             self.posY -= 1
 
-
+        # if "smell" in str(returnTxt):
+        #     self.screenText = roomList([self.posX][self.posY][0]).Roomsmell
+        #
 
 
     def on_loop(self): # Her legg vi alt som skal skje kvar gong bilete blir oppdatert
 
         self.clock.tick(30)
-        screen.fill(colorDict["darkblue"])
+        #screen.fill(colorDict["darkblue"])
+        screen.blit(img1,(0,0))
         input_box1.draw(screen)
         screen.blit(FONT.render(str(self.screenText), True, TEXT_COLOR), (40, 40))
         pg.display.update()

@@ -4,7 +4,7 @@ from pygame.locals import *
 
 
 pg.init()
-BOX_COLOR = pg.Color("Black")
+BOX_COLOR = pg.Color("White")
 FONT = pg.font.SysFont("lucidaconsole", 28)
 
 class InputBox:
@@ -44,5 +44,3 @@ class InputBox:
         screen.blit(FONT.render(">", True, self.color), (self.rect.x+5, self.rect.y+5))
 
         pg.draw.rect(screen, self.color, self.rect, 2)
-
-        
