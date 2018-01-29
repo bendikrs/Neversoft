@@ -1,5 +1,7 @@
-import pygame
+import pygame as pg
 from pygame.locals import *
+
+
 
 
 
@@ -13,12 +15,21 @@ colorDict = {   "white": (255, 255, 255),
                 }
 
 
-"""
-class Render(App):
-    def __init__(self):
-        super().__init__(self)
 
-    pygame.display.set_mode().fill((White))
+# class Render:
+#     def __init__(self):
+#         super().__init__(self)
+#
+#     def renderText(self, screen):
 
+
+
+        # screen.blit(FONT.render(">", True, self.color), (self.rect.x+5, self.rect.y+5))
+
+
+
+    # def renderImage(self, )
+
+
+# pygame.display.set_mode().fill((White))
 # screen.fill((white))
-"""

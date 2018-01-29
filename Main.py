@@ -11,6 +11,10 @@ pg.init()
 W, H = 800, 600
 boxWidth, boxHeight = W - 10, 40
 
+FONT = pg.font.SysFont("lucidaconsole", 36)
+TEXT_COLOR = pg.Color("Black")
+
+
 screen = pg.display.set_mode((W, H))
 input_box1 = InputBox(5, H-boxHeight-5, boxWidth, boxHeight)
 posX = 0
@@ -19,9 +23,6 @@ posY = 0
  # romma
 Kjøkenet = Rooms("Kuk", "Rommet lukta ost.")
 Stova = Rooms("Stova","Dritlukt")
-
-
-roomList = [[[Kjøkenet, 0, 0],["Garasja", 1, 0]],[[Stova, 0, 1],["Badet", 0, 2]]]
 
 
 
@@ -34,12 +35,13 @@ class App:
 
         pg.display.set_caption("Neversoft inc.") #
 
-        pg.mixer.pre_init(44100, 16, 2, 4096) #
-        soundObj = pg.mixer.Sound("beep.wav") # Legg til musikk i bakgrunnen
-        soundObj.play()
+        # pg.mixer.pre_init(44100, 16, 2, 4096) #
+        # soundObj = pg.mixer.Sound("beep.wav") # Legg til musikk i bakgrunnen
+        # soundObj.play()                       #
 
         self.posY = posY
         self.posX = posX
+        self.screenText = ""
 
     def on_event(self, event): # Her skjer all input
         if event.type == pg.QUIT:
@@ -54,6 +56,10 @@ class App:
 
         # Her skjer all forflytting av karakteren
         if "go" in str(returnTxt):
+
+            roomList = [[[Kjøkenet, 0, 0],["Garasja", 0, 1]],[[Stova, 1, 0],["Badet", 1, 1]]]
+
+
             if "north" in str(returnTxt):
                 self.posY += 1
             elif "west" in str(returnTxt):
@@ -65,8 +71,8 @@ class App:
 
 
             print("X posisjon:" + str(self.posX) + " Y posisjon:" + str(self.posY))
-            print(roomList[self.posX][self.posY][0])
-
+            if self.posX >= 0 and self.posY >= 0:
+                self.screenText = roomList[self.posX][self.posY][0]
 
 
         # Denne biten forhindrar spelaren å gå utanfor bana, variablane ligg i room.py
@@ -90,10 +96,10 @@ class App:
 
     def on_loop(self): # Her legg vi alt som skal skje kvar gong bilete blir oppdatert
 
-
-        pg.display.set_mode().fill(colorDict["darkblue"])
+        self.clock.tick(30)
+        screen.fill(colorDict["darkblue"])
         input_box1.draw(screen)
-
+        screen.blit(FONT.render(str(self.screenText), True, TEXT_COLOR), (40, 40))
         pg.display.update()
 
     def on_cleanup(self): # Denne metoden køyrer når spelet blir avslutta
@@ -109,46 +115,3 @@ class App:
 if __name__ == "__main__" :
     theApp = App()
     theApp.on_execute()
-
-
-
-    #
-    #
-    # pg.init()
-    # screen = pg.display.set_mode((400, 300))
-    # done = False
-    # is_blue = True
-    # x = 30
-    # y = 30
-    #
-    # pg.display.set_caption('Neversoft inc.')
-    # clock = pg.time.Clock()
-    #
-    # while not done:
-    #         for event in pg.event.get():
-    #                 if event.type == pg.QUIT:
-    #                         done = True
-    #                 if event.type == pg.KEYDOWN and event.key == pg.K_SPACE:
-    #                         is_blue = not is_blue
-    #                 if event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE:
-    #                         done = True
-    #
-    #         pressed = pg.key.get_pressed()
-    #         if pressed[pg.K_UP]:
-    #             y -= 3
-    #         if pressed[pg.K_DOWN]:
-    #             y += 3
-    #         if pressed[pg.K_LEFT]:
-    #             x -= 3
-    #         if pressed[pg.K_RIGHT]:
-    #             x += 3
-    #
-    #         screen.fill((0, 0, 0))
-    #         if is_blue:
-    #             color = (0, 128, 255)
-    #         else:
-    #             color = (255, 100, 0)
-    #         pg.draw.rect(screen, color, pg.Rect(x, y, 60, 60))
-    #
-    #         pg.display.flip()
-    #         clock.tick(60)
