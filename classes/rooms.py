@@ -4,7 +4,7 @@ import random as r
 offBoundsMsgs = ["Der er ikkje noko i den retninga.", "Du møtte ein vegg.", "Du kjem deg ikkje vidare i den retninga."]
 
 
-roomSizeX, roomSizeY = 3, 3
+roomSizeX, roomSizeY = 2, 1
 
 class Rooms:
     # Dette er baseklassa til allle romma

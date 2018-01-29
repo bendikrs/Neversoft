@@ -9,12 +9,12 @@ import random as r
 import sys
 import os.path
 
-img1 = pg.image.load("speletbase.png")
+kitchenimg = pg.image.load("speletbase.png")
 pg.init()
 W, H = 800, 600
 boxWidth, boxHeight = W - 10, 40
 
-FONT = pg.font.SysFont("lucidaconsole", 36)
+FONT = pg.font.SysFont("lucidaconsole", 26)
 TEXT_COLOR = pg.Color("White")
 
 
@@ -24,12 +24,15 @@ posX = 0
 posY = 0
 
  # romma
-Kjøkenet = Rooms("Kuk", "Rommet luktar ost.")
+Kjøkenet = Rooms("Kjøkenet", "Rommet luktar ost.")
 Stova = Rooms("Stova","Rommet luktar drit")
 Garasja = Rooms("Garasja", "Rommet luktar spylevæske og svette")
 Badet = Rooms("Badet", "Rommet luktar urin og mugg")
+Gangen = Rooms("Gangen", "Rommet luktar sure sko og kattemat")
+Soverommet = Rooms("Soverommet", "Rommet luktar sæd og morgenånde")
 
-roomList = [[[Kjøkenet, 0, 0],[Garasja, 0, 1]],[[Stova, 1, 0],[Badet, 1, 1]]]
+roomList = [[[Garasja, 0, 0, kitchenimg],[Soverommet, 0, 1]]
+            ,[[Gangen, 1, 0],[Stova, 1, 1]],[[Badet, 2, 0],[Kjøkenet, 2, 1]]]
 
 class App:
 
@@ -70,35 +73,40 @@ class App:
             elif "south" in str(returnTxt):
                 self.posY -= 1
 
+            # Denne biten forhindrar spelaren å gå utanfor bana, variablane ligg i room.py
+            offBoundsMsg = offBoundsMsgs[r.randint(0, len(offBoundsMsgs)- 1 )]
+            if self.posX < 0:
+                print(offBoundsMsg)
+                self.screenText = ''
+                self.screenText = offBoundsMsg
+                self.posX = 0
+                pass
+            elif self.posX > roomSizeX:
+                print(offBoundsMsg)
+                self.screenText = ''
+                self.screenText = offBoundsMsg
+                self.posX -= 1
+                pass
+            elif self.posY < 0:
+                print(offBoundsMsg)
+                self.screenText = ''
+                self.screenText = offBoundsMsg
+                self.posY = 0
+                pass
+            elif self.posY > roomSizeY:
+                print(offBoundsMsg)
+                self.screenText = ''
+                self.screenText = offBoundsMsg
+                self.posY -= 1
+                pass
 
-            print("X posisjon:" + str(self.posX) + " Y posisjon:" + str(self.posY))
-            if self.posX >= 0 and self.posY >= 0:
-                self.screenText = roomList[self.posX][self.posY][0]
+            else:
+                print("X posisjon:" + str(self.posX) + " Y posisjon:" + str(self.posY))
+                if self.posX >= 0 and self.posY >= 0:
+                    self.screenText = roomList[self.posX][self.posY][0]
 
 
-        # Denne biten forhindrar spelaren å gå utanfor bana, variablane ligg i room.py
-        offBoundsMsg = offBoundsMsgs[r.randint(0, len(offBoundsMsgs)- 1 )]
-        if self.posX < 0:
-            print(offBoundsMsg)
-            self.screenText = ''
-            self.screenText = offBoundsMsg
-            self.posX = 0
-        if self.posX > roomSizeX:
-            print(offBoundsMsg)
-            self.screenText = ''
-            self.screenText = offBoundsMsg
-            self.posX -= 1
 
-        if self.posY < 0:
-            print(offBoundsMsg)
-            self.screenText = ''
-            self.screenText = offBoundsMsg
-            self.posY = 0
-        if self.posY > roomSizeY:
-            print(offBoundsMsg)
-            self.screenText = ''
-            self.screenText = offBoundsMsg
-            self.posY -= 1
 
         # if "smell" in str(returnTxt):
         #     self.screenText = roomList([self.posX][self.posY][0]).Roomsmell
@@ -108,10 +116,10 @@ class App:
     def on_loop(self): # Her legg vi alt som skal skje kvar gong bilete blir oppdatert
 
         self.clock.tick(30)
-        #screen.fill(colorDict["darkblue"])
-        screen.blit(img1,(0,0))
+        screen.fill(colorDict["darkblue"])
+        #screen.blit((roomList[self.posX][self.posY][3]),(0,0))
         input_box1.draw(screen)
-        screen.blit(FONT.render(str(self.screenText), True, TEXT_COLOR), (40, 40))
+        screen.blit(FONT.render(str(self.screenText), True, TEXT_COLOR), (35, 450))
         pg.display.update()
 
     def on_cleanup(self): # Denne metoden køyrer når spelet blir avslutta
