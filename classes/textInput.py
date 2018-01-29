@@ -43,4 +43,4 @@ class InputBox:
         # Blit the rect.
         screen.blit(FONT.render(">", True, self.color), (self.rect.x+5, self.rect.y+5))
 
-        pg.draw.rect(screen, self.color, self.rect, 2)
+        #pg.draw.rect(screen, self.color, self.rect, 2)
