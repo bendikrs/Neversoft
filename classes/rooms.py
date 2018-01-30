@@ -23,12 +23,12 @@ class Rooms:
     def Roomsmell(self):
         return "Rommet luktar {}.".format(self.smell)
     def Roomfeel(self):
-        return "Du kjenner{}".format(self.feel)
+        return "Du kjenner {}.".format(self.feel)
     def Roomtaste(self):
-        return "Du sleikjer rundt om i rommet og kjenner smaken av {}".format(self.taste)
+        return "Du sleikjer rundt om i rommet og kjenner smaken av {}.".format(self.taste)
     def Roomlook(self):
-        return "Du ser rundt i rommet og ser{}".format(self.look)
+        return "Du ser rundt i rommet og ser {}.".format(self.look)
     def Roomsound(self):
-        return "Om du er heilt stille kan du høre lyden av{}".format(self.sound)
+        return "Om du er heilt stille kan du høre lyden av {}.".format(self.sound)
     def Roomjump(self):
-        return "Du hoppar opp og{}".format(self.jump)
+        return "Du hoppar opp og {}.".format(self.jump)

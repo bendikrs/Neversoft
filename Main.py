@@ -36,22 +36,48 @@ posY = 0
 
  # romma
 
-Kjøkenet = Rooms("Kjøkenet.", "ost.",
-"golvflisa under deg og noko vått under foten.",
-"gamalt grillkrydder og noko som minner litt om gamal banan.",
-"skitne kaseroller og asjettar. På golvet ligg eit bananskal.",
-"takvifta som snurrar og ein pakke leverpostei som råtnar.",
-"treff taklampa. I det du treff bakken, klirrar det i asjettane.")
-Stova = Rooms("Stova","drit",
+Kjøkenet = Rooms("kjøkenet.",
+"mygla polarbrød og brent grandiosa",
+"golvflisa under deg og noko vått under foten",
+"gamalt grillkrydder og noko som minner litt om brun banan",
+"skitne kaseroller og asjettar. På golvet ligg eit bananskal",
+"takvifta som snurrar og ein pakke leverpostei som råtnar",
+"treff taklampa. I det du treff bakken, klirrar det i asjettane")
+Stova = Rooms("stova",
+"drit",
 "vegg-til-vegg-teppet under deg. Nokon har sølt noko som har tørka og blitt stivt",
-"Pepsi Max og ostepop. Sofaen smakar ræv.",
-"Eit vegg-til-vegg-teppe og ein sliten sofa. Golvet og veggane er flekkete.",
-"kakerlakkar under sofaen og sigarettrøyk impregnert i veggane.",
-"når du landar lagar golvet ein lyd som minner om ein våt svamp.")
-Garasja = Rooms("Garasja", "spylevæske og svette","","","","","")
-Badet = Rooms("Badet", "urin og mugg","","","","","")
-Gangen = Rooms("Gangen", "sure sko og kattemat","","","","","")
-Soverommet = Rooms("Soverommet", "sæd og morgenånde","","","","","")
+"Pepsi Max og ostepop. Sofaen smakar ræv",
+"Eit vegg-til-vegg-teppe og ein sliten sofa. Golvet og veggane er flekkete",
+"kakerlakkar under sofaen og sigarettrøyk impregnert i veggane",
+"når du landar lagar golvet ein lyd som minner om ein våt svamp")
+Garasja = Rooms("garasja",
+"spylevæske og svette",
+"det kalde betonggolvet under sokkelestane. Du kjenner på bilen. Den er nypolert",
+"grus og motorolje. Bilen smakar såpe",
+"ein knallraud Saab 9-5,  antakelig frå rundt tusenårsskifte. Rundt bilen flyt det olje og spylevæske",
+"ein sildrande bekk av diverse drit som flyt ut garasjeporten",
+"beina forlet bakken. Etter kvart landar dei på bakken att. Du synes at hoppet gjekk nokså greitt")
+Badet = Rooms("badet",
+"urin, mugg, dobbel dusch og ei dobørste som skulle ha blitt bytta for lenge sidan",
+"at golvet er betrakteleg meir klissete rundt doen. Badekaret er fylt med ei hårete masse",
+'"kroppens fornødenheter" og ein ukjent smak frå badekaret',
+"at all flisa er dekt av flekkar i diverse fargar. I badekaret ligg noko grønt",
+"det du trur er den hårete massen i badekaret som veks",
+"sklir i det du landar. Du riv med deg dusjforhenget på veg ned")
+Gangen = Rooms("gangen",
+"sure sko og kattemat",
+"at det er lenge sidan du har vaska deg bak øyrene. Du skriv det ned på ein lapp",
+"lim. Du konkluderer med at dei ikkje er ferdige med å pusse opp rommet",
+"nokre flotte gummistøvlar. Du prøver dei på, men konkluderer med at dei ikkje passar",
+"ikkje ein drit",
+'og ned fleire gongar. Du tørkjer deg i panna og tenkjer "det var dagens trim"')
+Soverommet = Rooms("soverommet",
+"sæd, morgenånde og vannmelon",
+"at du blir litt svimmel. Det er i grunnen ganske digg",
+"sæd som av ein eller annan grunn virkar avhengigheitsdannande",
+"ikkje stort. Nokon har dampa fullt heile rommet",
+"skinnjakka di som knirkar. Ho er enda ikkje gådd inn",
+"flyg ut vindauget. Etter kvart kjem du til sansane att, og oppdagar at du framleis er i rommet")
 
 
 roomList = [[[Garasja, 0, 0, garasja_img],[Soverommet, 0, 1, soverommet_img]]
@@ -178,8 +204,9 @@ class App:
         screen.blit((roomList[self.posX][self.posY][3]),(0,0))
         input_box1.draw(screen)
 
-        screen.blit(FONT.render(" ".join(scrArr[:9]), True, TEXT_COLOR), (35, 450))
-        screen.blit(FONT.render(" ".join(scrArr[9:]), True, TEXT_COLOR), (35, 450+5+FONT_SIZE))
+        screen.blit(FONT.render(" ".join(scrArr[:9]), True, TEXT_COLOR), (30, 450))
+        screen.blit(FONT.render(" ".join(scrArr[9:18]), True, TEXT_COLOR), (30, 450+5+FONT_SIZE))
+        screen.blit(FONT.render(" ".join(scrArr[18:]), True, TEXT_COLOR), (30, 450+5+5+FONT_SIZE+FONT_SIZE))
         #screen.blit(FONT.render(str(self.screenText), True, TEXT_COLOR), (35, 450))
         pg.display.update()
 
