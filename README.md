@@ -16,3 +16,6 @@ ________         .__                __________.__
                             2018 | Norway
 
                       Music by www.bensound.com
+
+Kontrollar:
+Du kan bruke sansane din i alle romma, skriv for eksempel: "lukt", "hopp" eller "føl". Det meste skal fungere både på nynorsk, bokmål og engelsk.

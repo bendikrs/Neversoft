@@ -36,7 +36,7 @@ posY = 0
 
  # romma
 
-Kjøkenet = Rooms("kjøkenet.",
+Kjøkenet = Rooms("kjøkenet",
 "mygla polarbrød og brent grandiosa",
 "golvflisa under deg og noko vått under foten",
 "gamalt grillkrydder og noko som minner litt om brun banan",
@@ -89,6 +89,13 @@ northList = ["nord", "north", "opp", "up", "åpp"]
 southList = ["sør", "south", "ned", "down", "syd"]
 eastList = ["aust", "øst", "east","høyre", "høgre"]
 westList = ["vest", "venste","west", "left", "heim"]
+
+smellList = ["lukt", "smell", "innhaler"]
+feelList = ["kjenn", "føl", "ta"]
+tasteList = ["smak", "slikk", "sug"]
+lookList = ["sjå", "se", "see"]
+soundList = ["lytt", "hør", "listen"]
+jumpList = ["hopp", "jump", "flyg"]
 
 class App:
 
@@ -174,32 +181,31 @@ class App:
                     if self.posX >= 0 and self.posY >= 0:
                         self.screenText = roomList[self.posX][self.posY][0]
                 break
+
         # Her ligg dei andre sansane
-        if "lukt" in str(returnTxt):
-            self.screenText = roomList[self.posX][self.posY][0].Roomsmell()
-        if "kjenn" in str(returnTxt):
-            self.screenText = roomList[self.posX][self.posY][0].Roomfeel()
-        if "smak" in str(returnTxt):
-            self.screenText = roomList[self.posX][self.posY][0].Roomtaste()
-        if "sjå" in str(returnTxt):
-            self.screenText = roomList[self.posX][self.posY][0].Roomlook()
-        if "hør" in str(returnTxt):
-            self.screenText = roomList[self.posX][self.posY][0].Roomsound()
-        if "hopp" in str(returnTxt):
-            self.screenText = roomList[self.posX][self.posY][0].Roomjump()
-
-
-
+        for word in smellList:
+            if word in str(returnTxt):
+                self.screenText = roomList[self.posX][self.posY][0].Roomsmell()
+        for word in feelList:
+            if word in str(returnTxt):
+                self.screenText = roomList[self.posX][self.posY][0].Roomfeel()
+        for word in tasteList:
+            if word in str(returnTxt):
+                self.screenText = roomList[self.posX][self.posY][0].Roomtaste()
+        for word in lookList:
+            if word in str(returnTxt):
+                self.screenText = roomList[self.posX][self.posY][0].Roomlook()
+        for word in soundList:
+            if word in str(returnTxt):
+                self.screenText = roomList[self.posX][self.posY][0].Roomsound()
+        for word in jumpList:
+            if word in str(returnTxt):
+                self.screenText = roomList[self.posX][self.posY][0].Roomjump()
 
 
     def on_loop(self): # Her legg vi alt som skal skje kvar gong bilete blir oppdatert
 
-        #drawText(screen, (str(self.screenText)), colorDict["white"], txtArea,"lucidaconsole")
         scrArr = str(self.screenText).split()
-
-
-
-
         self.clock.tick(30)
         screen.blit((roomList[self.posX][self.posY][3]),(0,0))
         input_box1.draw(screen)
@@ -207,9 +213,7 @@ class App:
         screen.blit(FONT.render(" ".join(scrArr[:9]), True, TEXT_COLOR), (30, 450))
         screen.blit(FONT.render(" ".join(scrArr[9:18]), True, TEXT_COLOR), (30, 450+5+FONT_SIZE))
         screen.blit(FONT.render(" ".join(scrArr[18:]), True, TEXT_COLOR), (30, 450+5+5+FONT_SIZE+FONT_SIZE))
-        #screen.blit(FONT.render(str(self.screenText), True, TEXT_COLOR), (35, 450))
         pg.display.update()
-
 
     def on_cleanup(self): # Denne metoden køyrer når spelet blir avslutta
         pg.quit()

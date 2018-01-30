@@ -40,4 +40,4 @@ class InputBox:
         # rendra teksta
         screen.blit(self.txt_surface, (self.rect.x+25, self.rect.y+5))
         # rendra rektangelet
-        screen.blit(FONT.render(">", True, self.color), (self.rect.x+5, self.rect.y+5))
+        screen.blit(FONT.render(">", True, self.color), (self.rect.x+5, self.rect.y+3))
