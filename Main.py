@@ -46,17 +46,20 @@ class App:
     def __init__(self):
         self._running = True
         self.clock = pg.time.Clock()
-
-        pg.display.set_caption("Neversoft inc.") #
-
-        # pg.mixer.pre_init(44100, 16, 2, 4096) #
-        # soundObj = pg.mixer.Sound("beep.wav") # Legg til musikk i bakgrunnen
-        # soundObj.play()                       #
-
         self.posY = posY
         self.posX = posX
         self.screenText = "Bruk sansane til å utforske huset"
 
+        pg.display.set_caption("Neversoft inc.") #
+
+        pg.mixer.music.load("beep.wav")
+        pg.mixer.music.play(-1, 0.0)
+        #
+        # pg.mixer.pre_init(44100, 16, 2, 4096) #
+        # soundObj = pg.mixer.music("beep.wav") # Legg til musikk i bakgrunnen
+        # soundObj.play()                       #
+        #
+        #
     def on_event(self, event): # Her skjer all input
         if event.type == pg.QUIT:
             self._running = False
@@ -108,24 +111,22 @@ class App:
                 pass
 
             else:
+                # printar posisjonen til karakteren
                 print("X posisjon:" + str(self.posX) + " Y posisjon:" + str(self.posY))
+                # om koordinatane er gyldige så rendra denne __str__ til objektet i klassa Rooms
                 if self.posX >= 0 and self.posY >= 0:
                     self.screenText = roomList[self.posX][self.posY][0]
+
+        # Her ligg dei andre sansane
         if "smell" in str(returnTxt):
             self.screenText = roomList[self.posX][self.posY][0].Roomsmell()
 
 
 
 
-        # if "smell" in str(returnTxt):
-        #     self.screenText = roomList([self.posX][self.posY][0]).Roomsmell
-        #
-
-
     def on_loop(self): # Her legg vi alt som skal skje kvar gong bilete blir oppdatert
 
         self.clock.tick(30)
-        #screen.fill(colorDict["darkblue"])
         screen.blit((roomList[self.posX][self.posY][3]),(0,0))
         input_box1.draw(screen)
         screen.blit(FONT.render(str(self.screenText), True, TEXT_COLOR), (35, 450))
@@ -135,7 +136,7 @@ class App:
         pg.quit()
 
     def on_execute(self):
-        while( self._running ):         # Dette er game loopen som køyrer heile tida spelet køyrer
+        while( self._running ): # Dette er game loopen som køyrer heile tida spelet køyrer
             for event in pg.event.get():
                 self.on_event(event)
             self.on_loop()

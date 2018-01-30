@@ -33,7 +33,7 @@ brødkniv = Knife("ein brødkniv", "har noko rust på eggen", "veldig sløv")
 bolle = Food("ein bolle", "er nybakt og lukta fyller rommet", 124)
 
 
-
+# Diverse testar:
 # print (kakespade)
 # kakespade = Item("kakespade", "ser ut som ei kakespade")
 # print(brødkniv.sharpness)

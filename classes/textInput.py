@@ -2,7 +2,6 @@ import pygame as pg
 from pygame.locals import *
 
 
-
 pg.init()
 BOX_COLOR = pg.Color("White")
 FONT = pg.font.SysFont("lucidaconsole", 28)
@@ -20,7 +19,6 @@ class InputBox:
     def handle_event(self, event):
 
 
-
         if event.type == pg.KEYDOWN:
             if self.active:
                 returnText = ""
@@ -32,15 +30,13 @@ class InputBox:
                     self.text = self.text[:-1]
                 else:
                     self.text += event.unicode
-                # Re-render the text.
+
                 self.txt_surface = FONT.render(self.text, True, self.color)
                 return returnText.split()
 
     def draw(self, screen):
         width = self.x
-        # Blit the text.
+        # rendra teksta
         screen.blit(self.txt_surface, (self.rect.x+25, self.rect.y+5))
-        # Blit the rect.
+        # rendra rektangelet
         screen.blit(FONT.render(">", True, self.color), (self.rect.x+5, self.rect.y+5))
-
-        #pg.draw.rect(screen, self.color, self.rect, 2)
