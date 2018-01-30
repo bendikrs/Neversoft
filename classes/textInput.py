@@ -15,6 +15,7 @@ class InputBox:
         self.txt_surface = FONT.render(text, True, self.color)
         self.active = True
         self.x = x
+        pg.key.set_repeat(500, 30)
         global screenText
     def handle_event(self, event):
 

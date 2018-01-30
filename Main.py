@@ -9,6 +9,7 @@ import random as r
 import sys
 import os.path
 from images import *
+# from wraptest import *
 
 kjøkenet_img = pg.image.load("images/kjøkenet_img.png")
 badet_img = pg.image.load("images/badet_img.png")
@@ -20,7 +21,11 @@ pg.init()
 W, H = 800, 600
 boxWidth, boxHeight = W - 10, 40
 
-FONT = pg.font.SysFont("lucidaconsole", 15)
+scrArr = []
+
+txtArea = pg.Rect(35,450,500,200)
+FONT_SIZE = 15
+FONT = pg.font.SysFont("lucidaconsole", FONT_SIZE)
 TEXT_COLOR = pg.Color("White")
 
 
@@ -30,6 +35,7 @@ posX = 0
 posY = 0
 
  # romma
+
 Kjøkenet = Rooms("Kjøkenet.", "ost.",
 "golvflisa under deg og noko vått under foten.",
 "gamalt grillkrydder og noko som minner litt om gamal banan.",
@@ -47,9 +53,16 @@ Badet = Rooms("Badet", "urin og mugg","","","","","")
 Gangen = Rooms("Gangen", "sure sko og kattemat","","","","","")
 Soverommet = Rooms("Soverommet", "sæd og morgenånde","","","","","")
 
+
 roomList = [[[Garasja, 0, 0, garasja_img],[Soverommet, 0, 1, soverommet_img]]
             ,[[Gangen, 1, 0, gangen_img],[Stova, 1, 1, stova_img]],
             [[Badet, 2, 0, badet_img],[Kjøkenet, 2, 1, kjøkenet_img]]]
+
+goList = ["gå","go", "walk", "move","spaser"]
+northList = ["nord", "north", "opp", "up", "åpp"]
+southList = ["sør", "south", "ned", "down", "syd"]
+eastList = ["aust", "øst", "east","høyre", "høgre"]
+westList = ["vest", "venste","west", "left", "heim"]
 
 class App:
 
@@ -82,53 +95,59 @@ class App:
 
 
         # Her skjer all forflytting av karakteren
-        if "gå" in str(returnTxt):
+        for word in goList:
+            if word in str(returnTxt):
+                for i in range(len(northList)):
+                    if northList[i] in str(returnTxt):
+                        self.posY += 1
+                        break
+                    elif westList[i] in str(returnTxt):
+                        self.posX -= 1
+                        break
+                    elif eastList[i] in str(returnTxt):
+                        self.posX += 1
+                        break
+                    elif southList[i] in str(returnTxt):
+                        self.posY -= 1
+                        break
+                    if i >= len(northList):
+                        self.screenText = "Du må velje ei retning."
+                        return
 
-            if "nord" in str(returnTxt):
-                self.posY += 1
-            elif "vest" in str(returnTxt):
-                self.posX -= 1
-            elif "aust" in str(returnTxt):
-                self.posX += 1
-            elif "sør" in str(returnTxt):
-                self.posY -= 1
-            else:
-                self.screenText = "Du må velje ei retning."
-                return
-            # Denne biten forhindrar spelaren å gå utanfor bana, variablane ligg i room.py
-            offBoundsMsg = offBoundsMsgs[r.randint(0, len(offBoundsMsgs)- 1 )]
-            if self.posX < 0:
-                print(offBoundsMsg)
-                self.screenText = ''
-                self.screenText = offBoundsMsg
-                self.posX = 0
-                pass
-            elif self.posX > roomSizeX:
-                print(offBoundsMsg)
-                self.screenText = ''
-                self.screenText = offBoundsMsg
-                self.posX -= 1
-                pass
-            elif self.posY < 0:
-                print(offBoundsMsg)
-                self.screenText = ''
-                self.screenText = offBoundsMsg
-                self.posY = 0
-                pass
-            elif self.posY > roomSizeY:
-                print(offBoundsMsg)
-                self.screenText = ''
-                self.screenText = offBoundsMsg
-                self.posY -= 1
-                pass
+                # Denne biten forhindrar spelaren å gå utanfor bana, variablane ligg i room.py
+                offBoundsMsg = offBoundsMsgs[r.randint(0, len(offBoundsMsgs)- 1 )]
+                if self.posX < 0:
+                    print(offBoundsMsg)
+                    self.screenText = ''
+                    self.screenText = offBoundsMsg
+                    self.posX = 0
+                    pass
+                elif self.posX > roomSizeX:
+                    print(offBoundsMsg)
+                    self.screenText = ''
+                    self.screenText = offBoundsMsg
+                    self.posX -= 1
+                    pass
+                elif self.posY < 0:
+                    print(offBoundsMsg)
+                    self.screenText = ''
+                    self.screenText = offBoundsMsg
+                    self.posY = 0
+                    pass
+                elif self.posY > roomSizeY:
+                    print(offBoundsMsg)
+                    self.screenText = ''
+                    self.screenText = offBoundsMsg
+                    self.posY -= 1
+                    pass
 
-            else:
-                # printar posisjonen til karakteren
-                print("X posisjon:" + str(self.posX) + " Y posisjon:" + str(self.posY))
-                # om koordinatane er gyldige så rendra denne __str__ til objektet i klassa Rooms
-                if self.posX >= 0 and self.posY >= 0:
-                    self.screenText = roomList[self.posX][self.posY][0]
-
+                else:
+                    # printar posisjonen til karakteren
+                    print("X posisjon:" + str(self.posX) + " Y posisjon:" + str(self.posY))
+                    # om koordinatane er gyldige så rendra denne __str__ til objektet i klassa Rooms
+                    if self.posX >= 0 and self.posY >= 0:
+                        self.screenText = roomList[self.posX][self.posY][0]
+                break
         # Her ligg dei andre sansane
         if "lukt" in str(returnTxt):
             self.screenText = roomList[self.posX][self.posY][0].Roomsmell()
@@ -149,11 +168,21 @@ class App:
 
     def on_loop(self): # Her legg vi alt som skal skje kvar gong bilete blir oppdatert
 
+        #drawText(screen, (str(self.screenText)), colorDict["white"], txtArea,"lucidaconsole")
+        scrArr = str(self.screenText).split()
+
+
+
+
         self.clock.tick(30)
         screen.blit((roomList[self.posX][self.posY][3]),(0,0))
         input_box1.draw(screen)
-        screen.blit(FONT.render(str(self.screenText), True, TEXT_COLOR), (35, 450))
+
+        screen.blit(FONT.render(" ".join(scrArr[:9]), True, TEXT_COLOR), (35, 450))
+        screen.blit(FONT.render(" ".join(scrArr[9:]), True, TEXT_COLOR), (35, 450+5+FONT_SIZE))
+        #screen.blit(FONT.render(str(self.screenText), True, TEXT_COLOR), (35, 450))
         pg.display.update()
+
 
     def on_cleanup(self): # Denne metoden køyrer når spelet blir avslutta
         pg.quit()
