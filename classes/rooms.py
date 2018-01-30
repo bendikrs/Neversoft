@@ -24,8 +24,7 @@ class Rooms:
         # else:
             return "Du er no i {}.".format(self.name)
     def Roomsmell(self):
-        #return "Rommet luktar {}.".format(self.smell)
-        return self.smell
+        return "Rommet luktar {}.".format(self.smell)
 
 
 
