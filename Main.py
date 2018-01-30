@@ -30,15 +30,16 @@ posX = 0
 posY = 0
 
  # romma
-Kjøkenet = Rooms("Kjøkenet", "Rommet luktar ost.")
-Stova = Rooms("Stova","Rommet luktar drit")
-Garasja = Rooms("Garasja", "Rommet luktar spylevæske og svette")
-Badet = Rooms("Badet", "Rommet luktar urin og mugg")
-Gangen = Rooms("Gangen", "Rommet luktar sure sko og kattemat")
-Soverommet = Rooms("Soverommet", "Rommet luktar sæd og morgenånde")
+Kjøkenet = Rooms("Kjøkenet", "ost.")
+Stova = Rooms("Stova","drit")
+Garasja = Rooms("Garasja", "spylevæske og svette")
+Badet = Rooms("Badet", "urin og mugg")
+Gangen = Rooms("Gangen", "sure sko og kattemat")
+Soverommet = Rooms("Soverommet", "sæd og morgenånde")
 
 roomList = [[[Garasja, 0, 0, garasja_img],[Soverommet, 0, 1, soverommet_img]]
-            ,[[Gangen, 1, 0, gangen_img],[Stova, 1, 1, stova_img]],[[Badet, 2, 0, badet_img],[Kjøkenet, 2, 1, kjøkenet_img]]]
+            ,[[Gangen, 1, 0, gangen_img],[Stova, 1, 1, stova_img]],
+            [[Badet, 2, 0, badet_img],[Kjøkenet, 2, 1, kjøkenet_img]]]
 
 class App:
 
@@ -110,6 +111,8 @@ class App:
                 print("X posisjon:" + str(self.posX) + " Y posisjon:" + str(self.posY))
                 if self.posX >= 0 and self.posY >= 0:
                     self.screenText = roomList[self.posX][self.posY][0]
+        if "smell" in str(returnTxt):
+            self.screenText = roomList[self.posX][self.posY][0].Roomsmell()
 
 
 
