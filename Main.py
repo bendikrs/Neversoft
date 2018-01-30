@@ -20,7 +20,7 @@ pg.init()
 W, H = 800, 600
 boxWidth, boxHeight = W - 10, 40
 
-FONT = pg.font.SysFont("lucidaconsole", 26)
+FONT = pg.font.SysFont("lucidaconsole", 15)
 TEXT_COLOR = pg.Color("White")
 
 
@@ -30,12 +30,22 @@ posX = 0
 posY = 0
 
  # romma
-Kjøkenet = Rooms("Kjøkenet", "ost.")
-Stova = Rooms("Stova","drit")
-Garasja = Rooms("Garasja", "spylevæske og svette")
-Badet = Rooms("Badet", "urin og mugg")
-Gangen = Rooms("Gangen", "sure sko og kattemat")
-Soverommet = Rooms("Soverommet", "sæd og morgenånde")
+Kjøkenet = Rooms("Kjøkenet.", "ost.",
+"golvflisa under deg og noko vått under foten.",
+"gamalt grillkrydder og noko som minner litt om gamal banan.",
+"skitne kaseroller og asjettar. På golvet ligg eit bananskal.",
+"takvifta som snurrar og ein pakke leverpostei som råtnar.",
+"treff taklampa. I det du treff bakken, klirrar det i asjettane.")
+Stova = Rooms("Stova","drit",
+"vegg-til-vegg-teppet under deg. Nokon har sølt noko som har tørka og blitt stivt",
+"Pepsi Max og ostepop. Sofaen smakar ræv.",
+"Eit vegg-til-vegg-teppe og ein sliten sofa. Golvet og veggane er flekkete.",
+"kakerlakkar under sofaen og sigarettrøyk impregnert i veggane.",
+"når du landar lagar golvet ein lyd som minner om ein våt svamp.")
+Garasja = Rooms("Garasja", "spylevæske og svette","","","","","")
+Badet = Rooms("Badet", "urin og mugg","","","","","")
+Gangen = Rooms("Gangen", "sure sko og kattemat","","","","","")
+Soverommet = Rooms("Soverommet", "sæd og morgenånde","","","","","")
 
 roomList = [[[Garasja, 0, 0, garasja_img],[Soverommet, 0, 1, soverommet_img]]
             ,[[Gangen, 1, 0, gangen_img],[Stova, 1, 1, stova_img]],
@@ -52,7 +62,7 @@ class App:
 
         pg.display.set_caption("Neversoft inc.") #
 
-        pg.mixer.music.load("beep.wav")
+        pg.mixer.music.load("bensound-psychedelic.mp3")
         pg.mixer.music.play(-1, 0.0)
         #
         # pg.mixer.pre_init(44100, 16, 2, 4096) #
@@ -72,17 +82,19 @@ class App:
 
 
         # Her skjer all forflytting av karakteren
-        if "go" in str(returnTxt):
+        if "gå" in str(returnTxt):
 
-            if "north" in str(returnTxt):
+            if "nord" in str(returnTxt):
                 self.posY += 1
-            elif "west" in str(returnTxt):
+            elif "vest" in str(returnTxt):
                 self.posX -= 1
-            elif "east" in str(returnTxt):
+            elif "aust" in str(returnTxt):
                 self.posX += 1
-            elif "south" in str(returnTxt):
+            elif "sør" in str(returnTxt):
                 self.posY -= 1
-
+            else:
+                self.screenText = "Du må velje ei retning."
+                return
             # Denne biten forhindrar spelaren å gå utanfor bana, variablane ligg i room.py
             offBoundsMsg = offBoundsMsgs[r.randint(0, len(offBoundsMsgs)- 1 )]
             if self.posX < 0:
@@ -118,8 +130,19 @@ class App:
                     self.screenText = roomList[self.posX][self.posY][0]
 
         # Her ligg dei andre sansane
-        if "smell" in str(returnTxt):
+        if "lukt" in str(returnTxt):
             self.screenText = roomList[self.posX][self.posY][0].Roomsmell()
+        if "kjenn" in str(returnTxt):
+            self.screenText = roomList[self.posX][self.posY][0].Roomfeel()
+        if "smak" in str(returnTxt):
+            self.screenText = roomList[self.posX][self.posY][0].Roomtaste()
+        if "sjå" in str(returnTxt):
+            self.screenText = roomList[self.posX][self.posY][0].Roomlook()
+        if "hør" in str(returnTxt):
+            self.screenText = roomList[self.posX][self.posY][0].Roomsound()
+        if "hopp" in str(returnTxt):
+            self.screenText = roomList[self.posX][self.posY][0].Roomjump()
+
 
 
 
