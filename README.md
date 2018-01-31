@@ -18,4 +18,6 @@ ________         .__                __________.__
                       Music by www.bensound.com
 
 Kontrollar:
-Du kan bruke sansane din i alle romma, skriv for eksempel: "lukt", "hopp" eller "føl". Det meste skal fungere både på nynorsk, bokmål og engelsk.
+Du kan bruke sansane din i alle romma, skriv for
+eksempel: "lukt", "hopp" eller "føl".
+Det meste skal fungere både på nynorsk, bokmål og engelsk.

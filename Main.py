@@ -107,6 +107,9 @@ class App:
 
         pg.display.set_caption("Neversoft inc.") #
 
+        icon = pg.image.load('images.OR_ICON.png')    # legg til ikon
+        pg.display.set_icon(icon)
+
         pg.mixer.music.load("bensound-psychedelic.mp3")
         pg.mixer.music.play(-1, 0.0)
         #
