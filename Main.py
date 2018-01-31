@@ -7,15 +7,15 @@ import time
 import random as r
 import sys
 import os.path
-from images import *
+from media import *
 # from wraptest import *
 
-kjøkenet_img = pg.image.load("images/kjøkenet_img.png")
-badet_img = pg.image.load("images/badet_img.png")
-gangen_img = pg.image.load("images/gangen_img.png")
-soverommet_img = pg.image.load("images/soverommet_img.png")
-stova_img = pg.image.load("images/stova_img.png")
-garasja_img = pg.image.load("images/garasja_img.png")
+kjøkenet_img = pg.image.load("media/kjøkenet_img.png")
+badet_img = pg.image.load("media/badet_img.png")
+gangen_img = pg.image.load("media/gangen_img.png")
+soverommet_img = pg.image.load("media/soverommet_img.png")
+stova_img = pg.image.load("media/stova_img.png")
+garasja_img = pg.image.load("media/garasja_img.png")
 pg.init()
 W, H = 800, 600
 boxWidth, boxHeight = W - 10, 40
@@ -105,12 +105,12 @@ class App:
         self.posX = posX
         self.screenText = "Bruk sansane til å utforske huset"
 
-        pg.display.set_caption("Neversoft inc.") #
+        pg.display.set_caption("Onion Ring Studios") #
 
-        icon = pg.image.load('images.OR_ICON.png')    # legg til ikon
+        icon = pg.image.load('media/OR_ICON.png')    # legg til ikon
         pg.display.set_icon(icon)
 
-        pg.mixer.music.load("bensound-psychedelic.mp3")
+        pg.mixer.music.load("media/bensound-psychedelic.mp3")
         pg.mixer.music.play(-1, 0.0)
         #
         # pg.mixer.pre_init(44100, 16, 2, 4096) #
