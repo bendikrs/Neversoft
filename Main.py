@@ -87,7 +87,7 @@ goList = ["gå","go", "walk", "move","spaser"]
 northList = ["nord", "north", "opp", "up", "åpp"]
 southList = ["sør", "south", "ned", "down", "syd"]
 eastList = ["aust", "øst", "east","høyre", "høgre"]
-westList = ["vest", "venste","west", "left", "heim"]
+westList = ["vest", "venstre","west", "left", "heim"]
 
 smellList = ["lukt", "smell", "innhaler"]
 feelList = ["kjenn", "føl", "ta"]
