@@ -3,7 +3,6 @@ from pygame.locals import *
 from classes.items import *
 from classes.rooms import *
 from classes.textInput import *
-from render import *
 import time
 import random as r
 import sys
@@ -70,7 +69,7 @@ Gangen = Rooms("gangen",
 "lim. Du konkluderer med at dei ikkje er ferdige med å pusse opp rommet",
 "nokre flotte gummistøvlar. Du prøver dei på, men konkluderer med at dei ikkje passar",
 "ikkje ein drit",
-'og ned fleire gongar. Du tørkjer deg i panna og tenkjer "det var dagens trim"')
+'og ned fleire gongar. Du tørkar deg i panna og tenkjer "det var dagens trim"')
 Soverommet = Rooms("soverommet",
 "sæd, morgenånde og vannmelon",
 "at du blir litt svimmel. Det er i grunnen ganske digg",
