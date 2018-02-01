@@ -38,7 +38,7 @@ posY = 0
 Kjøkenet = Rooms("kjøkenet",
 "mygla polarbrød og brent grandiosa",
 "golvflisa under deg og noko vått under foten",
-"gamalt grillkrydder og noko som minner litt om brun banan",
+"gamalt grillkrydder og noko som minner litt om ein overmoden banan",
 "skitne kaseroller og asjettar. På golvet ligg eit bananskal",
 "takvifta som snurrar og ein pakke leverpostei som råtnar",
 "treff taklampa. I det du treff bakken, klirrar det i asjettane")
@@ -71,9 +71,9 @@ Gangen = Rooms("gangen",
 "ikkje ein drit",
 'og ned fleire gongar. Du tørkar deg i panna og tenkjer "det var dagens trim"')
 Soverommet = Rooms("soverommet",
-"sæd, morgenånde og vannmelon",
+"kvitløk, morgenånde og vannmelon",
 "at du blir litt svimmel. Det er i grunnen ganske digg",
-"sæd som av ein eller annan grunn virkar avhengigheitsdannande",
+"vannmelon som av ein eller annan grunn virkar avhengigheitsdannande",
 "ikkje stort. Nokon har dampa fullt heile rommet",
 "skinnjakka di som knirkar. Ho er enda ikkje gådd inn",
 "flyg ut vindauget. Etter kvart kjem du til sansane att, og oppdagar at du framleis er i rommet")
@@ -89,12 +89,12 @@ southList = ["sør", "south", "ned", "down", "syd"]
 eastList = ["aust", "øst", "east","høyre", "høgre"]
 westList = ["vest", "venstre","west", "left", "heim"]
 
-smellList = ["lukt", "smell", "innhaler"]
-feelList = ["kjenn", "føl", "ta"]
-tasteList = ["smak", "slikk", "sug"]
-lookList = ["sjå", "se", "see"]
-soundList = ["lytt", "hør", "listen"]
-jumpList = ["hopp", "jump", "flyg"]
+smellList = ["lukt", "smell", "innhaler", "pust"]
+feelList = ["kjenn", "føl", "ta", "feel"]
+tasteList = ["smak", "slikk", "sug", "taste"]
+lookList = ["sjå", "se", "see", "look"]
+soundList = ["lytt", "hør", "listen", "høyr"]
+jumpList = ["hopp", "jump", "fly"]
 
 class App:
 
